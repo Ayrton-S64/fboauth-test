@@ -68,7 +68,7 @@ function getUserPagesTokens(){
   FB.api(
     '/me/accounts',
     'GET',
-    {"fields":"name,access_token"},
+    {"fields":"name,access_token,instagram_business_account"},
     function(response) {
         console.log(response);
         if(response && response.data){
