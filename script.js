@@ -131,7 +131,7 @@ function makePageMetadataBasicRequest(){
 // IG REQUESTS
 function getInformationFromInstaPage(){
   console.log(instagramBussinessAcount_id)
-  const pageId = document.getElementById('txtPageNameMetadata').value
+  const pageId = document.getElementById('txtPageNameInstadata').value
   FB.api(
     `/${instagramBussinessAcount_id}`,
     'GET',
