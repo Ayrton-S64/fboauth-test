@@ -66,6 +66,19 @@ function makeMeRequest(){
     'GET',
     {},
     function(response) {
+      console.log('-----{{makeMeRequest}}-------')
+        console.log(response);
+    }
+  );
+}
+function makePageFeedBasicRequest(){
+  const pageId = document.getElementById('txtPageNameFeed').value
+  FB.api(
+    `/${pageId}/feed`,
+    'GET',
+    {},
+    function(response) {
+      console.log('-----{{makePageFeedBasicRequest}}-------')
         console.log(response);
     }
   );
