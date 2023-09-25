@@ -70,7 +70,7 @@ function getUserPagesTokens(){
     function(response) {
         console.log(response);
         if(response && response.data){
-          const data = data;
+          const data = response.data;
           data.forEach(page=>{
             PageBtn = document.createElement('button');
             PageBtn.textContent = page.name;
