@@ -23,7 +23,9 @@ window.fbAsyncInit = function() {
 // Función para iniciar sesión con Facebook en la página de inicio de sesión
 document.getElementById('loginWithFacebookBtn').addEventListener('click', function() {
     FB.login(function(response) {
+      console.log('respuesta de metodo login', response)
         if (response.authResponse) {
+          alert('siendo redireccionado')
             // El usuario ha iniciado sesión correctamente, redirige de vuelta a index.html
             window.location.href = 'index.html';
         }

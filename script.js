@@ -7,7 +7,7 @@ window.fbAsyncInit = function() {
         appId: appId,
         autoLogAppEvents: true,
         xfbml: true,
-        version: 'v12.0'
+        version: 'v18.0'
     });
 
     // Comprueba el estado de inicio de sesión cuando se carga la página
@@ -26,11 +26,14 @@ window.fbAsyncInit = function() {
 // Función para verificar el estado de inicio de sesión
 function checkLoginStatus() {
     FB.getLoginStatus(function(response) {
+      console.log('checking connection status: ', response);
         if (response.status === 'connected') {
             // El usuario está autenticado
+            console.log('sessión encontrada')
             showContent();
         } else {
             // El usuario no está autenticado, redirige a la página de inicio de sesión
+            console.log('usuario no conectado')
             redirectToLogin();
         }
     });
