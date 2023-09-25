@@ -1,6 +1,8 @@
 // Reemplaza 'tu-app-id' con tu ID de aplicación de Facebook
 const appId = '696119942382503';
 
+var appAccessToken = null;
+
 // Inicializa la SDK de Facebook
 window.fbAsyncInit = function() {
     FB.init({
@@ -29,7 +31,8 @@ function checkLoginStatus() {
       console.log('checking connection status: ', response);
         if (response.status === 'connected') {
             // El usuario está autenticado
-            // saveAccessToken();
+            saveAccessToken();
+            getUserPagesTokens()
             console.log('sessión encontrada')
             showContent();
         } else {
@@ -59,6 +62,32 @@ function redirectToLogin() {
     window.location.href = 'login.html';
 }
 
+function getUserPagesTokens(){
+  FB.api(
+    '/me/accounts',
+    'GET',
+    {"fields":"name,access_token"},
+    function(response) {
+        console.log(response);
+        if(response && response.data){
+          const data = data;
+          data.forEach(page=>{
+            PageBtn = document.createElement('button');
+            PageBtn.textContent = page.name;
+            PageBtn.onclick = ()=>{
+              setPageAccessToken(page.acces_token)
+            } 
+          })
+        }else{
+          console.error('no se que paso en getUserPagesTokens')
+        }
+    }
+  );
+}
+
+function setPageAccessToken(page_token){
+  appAccessToken = page_token;
+}
 
 function makeMeRequest(){
   FB.api(
@@ -76,7 +105,7 @@ function makePageFeedBasicRequest(){
   FB.api(
     `/${pageId}/feed`,
     'GET',
-    {},
+    {"access_token":page_token},
     function(response) {
       console.log('-----{{makePageFeedBasicRequest}}-------')
         console.log(response);
@@ -89,7 +118,7 @@ function makePageMetadataBasicRequest(){
   FB.api(
     `/${pageId}`,
     'GET',
-    {"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
+    {"access_token":page_token,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
     function(response) {
         // Insert your code here
     }
