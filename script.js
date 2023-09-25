@@ -56,7 +56,7 @@ function showContent() {
 
 // Función para redirigir a la página de inicio de sesión
 function redirectToLogin() {
-    // window.location.href = 'login.html';
+    window.location.href = 'login.html';
 }
 
 
