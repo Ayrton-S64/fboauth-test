@@ -3,6 +3,8 @@ const appId = '696119942382503';
 
 var appAccessToken = null;
 
+var instagramBussinessAcount_id = null;
+
 // Inicializa la SDK de Facebook
 window.fbAsyncInit = function() {
     FB.init({
@@ -75,7 +77,8 @@ function getUserPagesTokens(){
             PageBtn = document.createElement('button');
             PageBtn.textContent = page.name;
             PageBtn.onclick = ()=>{
-              setPageAccessToken(page.access_token)
+              appAccessToken = page.access_token;
+              instagramBussinessAcount_id = page.instagram_business_account.id
             } 
             document.getElementById('paginas_container').appendChild(PageBtn)
           })
@@ -84,10 +87,6 @@ function getUserPagesTokens(){
         }
     }
   );
-}
-
-function setPageAccessToken(page_token){
-  appAccessToken = page_token;
 }
 
 function makeMeRequest(){
@@ -123,6 +122,22 @@ function makePageMetadataBasicRequest(){
     'GET',
     {access_token:appAccessToken,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
     function(response) {
+      console.log('-----{{makePageMetadataBasicRequest}}-------')
+        console.log(response);
+    }
+  );
+}
+
+// IG REQUESTS
+function getInformationFromInstaPage(){
+  console.log(instagramBussinessAcount_id)
+  const pageId = document.getElementById('txtPageNameMetadata').value
+  FB.api(
+    `/${instagramBussinessAcount_id}`,
+    'GET',
+    {access_token:appAccessToken,"fields":"business_discovery.username(arbys){id,username,followers_count,media_count,media.limit(3){comments_count,like_count}}"},
+    function(response) {
+      console.log('-----{{getInformationFromInstaPage}}-------')
         console.log(response);
     }
   );
