@@ -106,7 +106,7 @@ function makePageFeedBasicRequest(){
   FB.api(
     `/${pageId}/feed`,
     'GET',
-    {"access_token":page_token},
+    {"access_token":appAccessToken},
     function(response) {
       console.log('-----{{makePageFeedBasicRequest}}-------')
         console.log(response);
@@ -119,7 +119,7 @@ function makePageMetadataBasicRequest(){
   FB.api(
     `/${pageId}`,
     'GET',
-    {"access_token":page_token,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
+    {"access_token":appAccessToken,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
     function(response) {
         // Insert your code here
     }
