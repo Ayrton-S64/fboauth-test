@@ -77,6 +77,7 @@ function getUserPagesTokens(){
             PageBtn.onclick = ()=>{
               setPageAccessToken(page.acces_token)
             } 
+            document.getElementById('paginas_container').appendChild(PageBtn)
           })
         }else{
           console.error('no se que paso en getUserPagesTokens')
