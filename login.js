@@ -29,5 +29,5 @@ document.getElementById('loginWithFacebookBtn').addEventListener('click', functi
             // El usuario ha iniciado sesión correctamente, redirige de vuelta a index.html
             window.location.href = 'index.html';
         }
-    }, {scope: 'instagram_basic,pages_read_engagement,pages_read_user_content'});
+    }, {scope: 'instagram_basic,instagram_manage_insights,pages_show_list,pages_read_engagement,pages_read_user_content'});
 });
