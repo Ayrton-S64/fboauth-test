@@ -29,6 +29,7 @@ function checkLoginStatus() {
       console.log('checking connection status: ', response);
         if (response.status === 'connected') {
             // El usuario está autenticado
+            // saveAccessToken();
             console.log('sessión encontrada')
             showContent();
         } else {
@@ -39,6 +40,14 @@ function checkLoginStatus() {
     });
 }
 
+function saveAccessToken(token){
+  window.localStorage.setItem('fb-access-token', token);
+}
+
+function getAccessToken(){
+  return window.localStorage.getItem('fb-access-token');
+}
+
 // Función para mostrar el contenido una vez que el usuario esté autenticado
 function showContent() {
     const contentDiv = document.getElementById('content');
@@ -47,5 +56,17 @@ function showContent() {
 
 // Función para redirigir a la página de inicio de sesión
 function redirectToLogin() {
-    window.location.href = 'login.html';
+    // window.location.href = 'login.html';
+}
+
+
+function makeMeRequest(){
+  FB.api(
+    '/me',
+    'GET',
+    {},
+    function(response) {
+        console.log(response);
+    }
+  );
 }
