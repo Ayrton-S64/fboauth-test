@@ -83,3 +83,15 @@ function makePageFeedBasicRequest(){
     }
   );
 }
+
+function makePageMetadataBasicRequest(){
+  const pageId = document.getElementById('txtPageNameMetadata').value
+  FB.api(
+    `/${pageId}`,
+    'GET',
+    {"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
+    function(response) {
+        // Insert your code here
+    }
+  );
+}
