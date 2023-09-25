@@ -75,7 +75,7 @@ function getUserPagesTokens(){
             PageBtn = document.createElement('button');
             PageBtn.textContent = page.name;
             PageBtn.onclick = ()=>{
-              setPageAccessToken(page.acces_token)
+              setPageAccessToken(page.access_token)
             } 
             document.getElementById('paginas_container').appendChild(PageBtn)
           })
@@ -123,7 +123,7 @@ function makePageMetadataBasicRequest(){
     'GET',
     {access_token:appAccessToken,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
     function(response) {
-        // Insert your code here
+        console.log(response);
     }
   );
 }
