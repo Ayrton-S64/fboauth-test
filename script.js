@@ -1,6 +1,8 @@
 // Reemplaza 'tu-app-id' con tu ID de aplicación de Facebook
 const appId = '696119942382503';
 
+const app_secret = '33d69bcf04b6693d5d1e4addf7aaa041';
+
 var appAccessToken = null;
 
 var instagramBussinessAcount_id = null;
@@ -106,7 +108,7 @@ function makePageFeedBasicRequest(){
   FB.api(
     `/${pageId}/feed`,
     'GET',
-    {access_token:appAccessToken},
+    {access_token:`${appId}|${app_secret}`},
     function(response) {
       console.log('-----{{makePageFeedBasicRequest}}-------')
         console.log(response);
@@ -120,7 +122,7 @@ function makePageMetadataBasicRequest(){
   FB.api(
     `/${pageId}`,
     'GET',
-    {access_token:appAccessToken,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
+    {access_token:`${appId}|${app_secret}`,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
     function(response) {
       console.log('-----{{makePageMetadataBasicRequest}}-------')
         console.log(response);
@@ -135,7 +137,7 @@ function getInformationFromInstaPage(){
   FB.api(
     `/${instagramBussinessAcount_id}`,
     'GET',
-    {access_token:appAccessToken,"fields":"business_discovery.username(arbys){id,username,followers_count,media_count,media.limit(3){comments_count,like_count}}"},
+    {access_token:`${appId}|${app_secret}`,"fields":"business_discovery.username(arbys){id,username,followers_count,media_count,media.limit(3){comments_count,like_count}}"},
     function(response) {
       console.log('-----{{getInformationFromInstaPage}}-------')
         console.log(response);
