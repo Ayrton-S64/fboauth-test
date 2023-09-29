@@ -68,7 +68,7 @@ function getUserPagesTokens(){
   FB.api(
     '/me/accounts',
     'GET',
-    {"fields":"name,access_token,instagram_business_account"},
+    {"fields":"name,username,access_token,instagram_business_account"},
     function(response) {
         console.log(response);
         if(response && response.data){
@@ -81,7 +81,7 @@ function getUserPagesTokens(){
               instagramBussinessAcount_id = page.instagram_business_account.id
               document.getElementById('igPageID').value = page.instagram_business_account.id;
             
-              document.getElementById('fbPageID').value = page.name;
+              document.getElementById('fbPageID').value = page.username;
             } 
             document.getElementById('paginas_container').appendChild(PageBtn)
           })
