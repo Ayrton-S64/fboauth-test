@@ -142,7 +142,7 @@ function getFacebookGeneralStatistics(){
     'GET',
     {
       access_token:appAccessToken,
-      "fields":"page_fans, page_fan_adds,page_actions_post_reactions_total,page_post_engagements",
+      "metric":"page_fans, page_fan_adds,page_actions_post_reactions_total,page_post_engagements",
       since: "2023-09-01",
       until: "2023-09-30",
       period: "day",
