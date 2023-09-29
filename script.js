@@ -105,7 +105,7 @@ function makeMeRequest(){
 }
 function makePageFeedBasicRequest(){
   console.log(appAccessToken)
-  const pageId = document.getElementById('txtPageNameFeed').value
+  const pageId = document.getElementById('fbPageID').value
   FB.api(
     `/${pageId}/feed`,
     'GET',
@@ -119,7 +119,7 @@ function makePageFeedBasicRequest(){
 
 function makePageMetadataBasicRequest(){
   console.log(appAccessToken)
-  const pageId = document.getElementById('txtPageNameMetadata').value
+  const pageId = document.getElementById('fbPageID').value
   FB.api(
     `/${pageId}`,
     'GET',
@@ -136,7 +136,7 @@ function makePageMetadataBasicRequest(){
 
 function getFacebookGeneralStatistics(){
   console.log(appAccessToken)
-  const pageId = document.getElementById('txtPageNameMetadata').value
+  const pageId = document.getElementById('fbPageID').value
   FB.api(
     `/${pageId}/insights`,
     'GET',
@@ -156,7 +156,7 @@ function getFacebookGeneralStatistics(){
 
 function getFacebookMetricsStatistics(){
   console.log(appAccessToken)
-  const pageId = document.getElementById('txtPageNameMetadata').value
+  const pageId = document.getElementById('fbPageID').value
   FB.api(
     `/${pageId}/feed`,
     'GET',
@@ -173,7 +173,7 @@ function getFacebookMetricsStatistics(){
 
 function getFacebookPostsStatistics(){
   console.log(appAccessToken)
-  const pageId = document.getElementById('txtPageNameMetadata').value
+  const pageId = document.getElementById('fbPageID').value
   FB.api(
     `/${pageId}`,
     'GET',
