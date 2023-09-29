@@ -5,55 +5,54 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <header>
     <h1>Mi Aplicación Web</h1>
     <div id="content">
         <p>Bienvenido a nuestra aplicación web.</p>
     </div>
-    <div>
-      <div>
-        <h4>Prueba de consultas API Graph</h4>
-      </div>
-      <div>
-        <h4>PAGINAS</h4>
-        <div id="paginas_container">
-
-        </div>
-      </div>
-      <div>
-        <div>
-          <div>
-            <h2>FACEBOOK</h2>
-          </div>
-          <div>
-            <p>Realizar consulta me? <button onclick="makeMeRequest()">Solicitar</button></p>
-          </div>
-          <div>
-          </div>
-          <div>
-            <p>Realizar consulta feed de una pagina?</p>
-            <input type="text" id="txtPageNameFeed"/>
-            <button onclick="makePageFeedBasicRequest()">Solicitar</button>
-          </div>
-          <div>
-            <p>Realizar consulta metadata de una pagina?</p>
-            <input type="text" id="txtPageNameMetadata"/>
-            <button onclick="makePageMetadataBasicRequest()">Solicitar</button>
-          </div>
-        </div>
-        <div>
-          <div>
-            <h2>INSTAGRAM</h2>
-          </div>
-          <div>
-            <div>
-              <p>Realizar consulta bench pagina de insta?</p>
-              <input type="text" id="txtPageNameInstadata"/>
-              <button onclick="getInformationFromInstaPage()">Solicitar</button>
-            </div>
-          </div>
-        </div>
+  </header>
+  <main>
+    <div class="pages-container">
+      <div id="paginas_container">
+        <button>test</button>
       </div>
     </div>
+    <div class="requests-container">
+      <section class="social-network-container">
+        <h3>FACEBOOK</h3>
+        <div class="general-input">
+          <label for="">Page ID</label>
+          <input id="fbPageID" type="text" placeholder="cocacola">
+        </div>
+        <div class="requests">
+          <button onclick="makePageFeedBasicRequest()">Consulta Basica Feed</button>
+          <button onclick="makePageMetadataBasicRequest()">Consulta Basica Datos</button>
+          
+          <button onclick="getFacebookGeneralStatistics()">Consulta Estadistica General</button>
+          <button onclick="getFacebookMetricsStatistics()">Consulta Estadistica Metricas</button>
+          <button onclick="getFacebookPostsStatistics()">Consulta Estadistica Posts</button>
+        </div>
+      </section>
+      <hr>
+      <section class="social-network-container">
+        <h3>INSTAGRAM</h3>
+        <div class="general-input">
+          <label for="">Intagram page ID</label>
+          <input id="igPageID" type="text" placeholder="17841441130334260">
+        </div>
+        <div class="requests">
+          <button onclick="getInformationFromInstaPage()">Consulta Informacion General Pagina</button>
+          <button onclick="getMetricsInformationFromInstaPage()">Consulta Metricas Pagina</button>
+          <button onclick="getMetricsInformationFromMediaInstaPage()">Consulta Estadisticas Media</button>
+        </div>
+      </section>
+    </div>
+    <hr class="separator">
+    <div class="response-container">
+      <h4>Respuesta:</h4>
+      <textarea name="" id="taRespuestaConsulta"></textarea>
+    </div>
+  </main>
     <script src="script.js"></script>
 </body>
 </html>

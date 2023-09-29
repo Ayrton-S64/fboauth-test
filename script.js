@@ -3,7 +3,7 @@ const appId = '696119942382503';
 
 var appAccessToken = null;
 
-var instagramBussinessAcount_id = null;
+var instagramBussinessAcount_id = 17841441130334260;
 
 // Inicializa la SDK de Facebook
 window.fbAsyncInit = function() {
@@ -79,6 +79,9 @@ function getUserPagesTokens(){
             PageBtn.onclick = ()=>{
               appAccessToken = page.access_token;
               instagramBussinessAcount_id = page.instagram_business_account.id
+              document.getElementById('igPageID').value = page.instagram_business_account.id;
+            
+              document.getElementById('fbPageID').value = page.name;
             } 
             document.getElementById('paginas_container').appendChild(PageBtn)
           })
@@ -120,7 +123,10 @@ function makePageMetadataBasicRequest(){
   FB.api(
     `/${pageId}`,
     'GET',
-    {access_token:appAccessToken,"fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"},
+    {
+      access_token:appAccessToken,
+      "fields":"category,fan_count,is_community_page,link,name,rating_count,talking_about_count,were_here_count,instagram_accounts{id,username,follow_count,followed_by_count,media_count},about"
+    },
     function(response) {
       console.log('-----{{makePageMetadataBasicRequest}}-------')
         console.log(response);
@@ -128,16 +134,101 @@ function makePageMetadataBasicRequest(){
   );
 }
 
+function getFacebookGeneralStatistics(){
+  console.log(appAccessToken)
+  const pageId = document.getElementById('txtPageNameMetadata').value
+  FB.api(
+    `/${pageId}/insights`,
+    'GET',
+    {
+      access_token:appAccessToken,
+      "fields":"page_fans, page_fan_adds,page_actions_post_reactions_total,page_post_engagements",
+      since: "2023-09-01",
+      until: "2023-09-30",
+      period: "day",
+    },
+    function(response) {
+      console.log('-----{{getFacebookGeneralStatistics}}-------')
+        console.log(response);
+    }
+  );
+}
+
+function getFacebookMetricsStatistics(){
+  console.log(appAccessToken)
+  const pageId = document.getElementById('txtPageNameMetadata').value
+  FB.api(
+    `/${pageId}/feed`,
+    'GET',
+    {
+      access_token:appAccessToken,
+      "fields":"comments.summary(true), reactions.summary(true), insights.metric(post_engaged_users, post_engaged_fan,post_reactions_by_type_total)"
+    },
+    function(response) {
+      console.log('-----{{getFacebookGeneralStatistics}}-------')
+        console.log(response);
+    }
+  );
+}
+
+function getFacebookPostsStatistics(){
+  console.log(appAccessToken)
+  const pageId = document.getElementById('txtPageNameMetadata').value
+  FB.api(
+    `/${pageId}`,
+    'GET',
+    {access_token:appAccessToken,"fields":"access_token, followers_count, fan_count, new_like_count, insights.metric(page_fans, page_fan_adds,page_actions_post_reactions_total,page_post_engagements),feed{id, created_time, message, shares, comments.summary(true), reactions.summary(true),insights.metric(post_engaged_users, post_engaged_fan,post_reactions_by_type_total)}"},
+    function(response) {
+      console.log('-----{{getFacebookPostsStatistics}}-------')
+        console.log(response);
+    }
+  );
+}
+
 // IG REQUESTS
 function getInformationFromInstaPage(){
-  console.log(instagramBussinessAcount_id)
-  const pageId = document.getElementById('txtPageNameInstadata').value
+  const igId = document.getElementById('igPageID').value
   FB.api(
-    `/${instagramBussinessAcount_id}`,
+    `/${igId}`,
     'GET',
-    {access_token:appAccessToken,"fields":"business_discovery.username(arbys){id,username,followers_count,media_count,media.limit(3){comments_count,like_count}}"},
+    {access_token:appAccessToken,"fields":"id,username,name,profile_picture_url,biography,follows_count,followers_count,media_count"},
     function(response) {
       console.log('-----{{getInformationFromInstaPage}}-------')
+        console.log(response);
+    }
+  );
+}
+
+function getMetricsInformationFromInstaPage(){
+  const igId = document.getElementById('igPageID').value
+  FB.api(
+    `/${igId}/insights`,
+    'GET',
+    {
+      access_token:appAccessToken,
+      "metric":"total_interactions,likes,comments",
+      period: "day",
+      since: "2023-09-01",
+      until: "2023-09-30",
+    },
+    function(response) {
+      console.log('-----{{getMetricsInformationFromInstaPage}}-------')
+        console.log(response);
+    }
+  );
+}
+
+function getMetricsInformationFromMediaInstaPage(){
+  const igId = document.getElementById('igPageID').value
+  FB.api(
+    `/${igId}/media`,
+    'GET',
+    {
+      access_token:appAccessToken,
+      "fields":"id,caption,like_count,comments_count,permalink,media_url,media_type,insights.metric(total_interactions, likes, comments, shares, saved)"
+    },
+    function(response) {
+      console.log('-----{{getMetricsInformationFromMediaInstaPage}}-------')
         console.log(response);
     }
   );

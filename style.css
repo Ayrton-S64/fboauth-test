@@ -1,0 +1,129 @@
+body{
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  margin: 0;
+  overflow-y: auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+  margin: 1em;
+  border: 2px solid black;
+  text-align: center;
+}
+
+main{
+  display: grid;
+  grid-template-areas: 
+  "pages pages pages"      
+  "requests separator response";
+  grid-template-columns: 1fr 4px 1fr;
+  grid-template-rows: 90px 1fr;
+  padding-inline: 1em;
+  margin-bottom: 12px;
+}
+
+
+.pages-container{
+  grid-area: pages;
+  border: 2px solid black;  
+  padding: 1em;
+  display: grid;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: .7em;
+}
+
+button{
+  all: unset;
+  border: 2px solid black; 
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: black;
+  color: white;
+  cursor: pointer;  
+}
+
+.pages-container button{
+  padding-block: .28rem;
+  padding-inline: .64rem;
+  font-size: 24px;
+}
+
+.requests-container{
+  grid-area: requests;
+  border: 2px solid black; 
+  margin-right: .5em;
+  padding: .42em;
+}
+
+.requests{
+  display: flex;
+  flex-direction: column;
+  padding-top: .87em;
+  padding-inline: .42em;
+  gap: .56em;
+}
+
+.requests button{
+  padding-block: .28rem;
+  padding-inline: .64rem;
+  font-size: 18px;
+}
+
+.separator{
+  grid-area: separator;
+  background-color: black;
+  color: black;
+  height: auto;
+  margin: 0;
+  width: auto;
+}
+
+.response-container{
+  grid-area: response;
+  border: 2px solid black; 
+  margin-left: .5em;
+  padding: .42em;
+  display: flex;
+  flex-direction: column;
+}
+
+.response-container h4{
+  margin: 0;
+  margin-bottom: .32em;
+}
+
+.response-container textarea{
+  width: auto;
+  flex-grow: 1;
+  resize: none;
+}
+
+
+.social-network-container{
+
+}
+.social-network-container h3{
+  margin: 0;
+  margin-bottom: .4em;
+}
+
+.social-network-container .general-input{
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+}
+
+input[type="text"]{
+  all: unset;
+  padding-block: .41rem;
+  padding-inline: .78rem;
+  border: 1px solid black; 
+
+}
